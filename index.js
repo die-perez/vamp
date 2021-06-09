@@ -1,3 +1,5 @@
+// import axios - node package allows basic get request
+const axios = require('axios')
 let express = require('express')
 let ejsLayouts = require('express-ejs-layouts')
 // let db = require('./models')
@@ -20,9 +22,23 @@ app.get('/', (req,res) => {
 
 // GET --> show search categories in products page
 app.get('/products', (req,res) => {
-    // 
     res.render('products/index')
 })
+
+// GET --> returns data from makeup api based on query
+app.get('/products/search', (req,res) => {
+    const type = req.query.product_type
+    // const brand = req.query.brand
+    // search makeup api database
+    axios.get(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`)
+        .then((response) => {
+            // render data to page
+            res.render('products/results', { product: response.data})
+        })
+        .catch(err => {console.log(err)})
+})
+
+
 
 
 var server = app.listen(process.env.PORT || 3000, () => {

@@ -1,0 +1,7 @@
+<ul>
+    <% product.forEach((product, index) => { %>
+       <li id="hover">
+            <a href="/product/<%= product.id %>" class="product-results"><%= product.name %></a>
+       </li> 
+    <% }) %>
+</ul>
