@@ -1,7 +1,16 @@
-<ul>
-    <% product.forEach((product, index) => { %>
-       <li id="hover">
-            <a href="/product/<%= product.id %>" class="product-results"><%= product.name %></a>
-       </li> 
-    <% }) %>
-</ul>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    
+<% product.forEach((product, index) => { %>
+    <div class="col">
+    <div class="card" style="width: 15rem;">
+        <img src="<%= product.image_link %>" class="card-img-top" alt="<%= product.name %>">
+        <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            
+            <a href="/product/<%= product.id %>" class="btn btn-primary btn-dark">See More</a>
+        </div>
+    </div>
+</div>
+<% }) %>
+
+</div>

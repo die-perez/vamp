@@ -28,9 +28,10 @@ app.get('/products', (req,res) => {
 // GET --> returns data from makeup api based on query
 app.get('/products/search', (req,res) => {
     const type = req.query.product_type
+    const brand = req.query.brand
     // const brand = req.query.brand
     // search makeup api database
-    axios.get(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`)
+    axios.get(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&brand=${brand}`)
         .then((response) => {
             // render data to page
             res.render('products/results', { product: response.data})
@@ -38,7 +39,18 @@ app.get('/products/search', (req,res) => {
         .catch(err => {console.log(err)})
 })
 
+// GET --> return product id
+app.get('/product/:id', (req,res) => {
 
+    // search api data for id
+    axios.get(`http://makeup-api.herokuapp.com/api/v1/products/${req.params.id}.json`)
+    .then((response) => {
+        console.log(response)
+        // render product details to page
+        res.render('products/detail', {product: response.data})
+    })
+    .catch(err => {console.log(err)})
+})
 
 
 var server = app.listen(process.env.PORT || 3000, () => {
