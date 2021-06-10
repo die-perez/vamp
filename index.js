@@ -2,7 +2,7 @@
 const axios = require('axios')
 let express = require('express')
 let ejsLayouts = require('express-ejs-layouts')
-// let db = require('./models')
+let db = require('./models')
 let moment = require('moment')
 let rowdy = require('rowdy-logger')
 let app = express()
@@ -39,9 +39,8 @@ app.get('/products/search', (req,res) => {
         .catch(err => {console.log(err)})
 })
 
-// GET --> return product id
+// GET --> return product details
 app.get('/product/:id', (req,res) => {
-
     // search api data for id
     axios.get(`http://makeup-api.herokuapp.com/api/v1/products/${req.params.id}.json`)
     .then((response) => {
@@ -51,6 +50,23 @@ app.get('/product/:id', (req,res) => {
     })
     .catch(err => {console.log(err)})
 })
+
+// POST --> post comments on product page
+app.post('/product/:id/reviews', (req,res) => {
+    let email = req.body.email
+    // TODO: Get form data and add a new record to DB
+    db.user.findOrCreate({
+      where: {
+        email: email
+      }
+    })
+    .then((data) => {
+      // redirect back to favorites page
+      res.redirect('/product/:id')
+    })
+    .catch(err => {console.log(err)}) 
+})
+
 
 
 var server = app.listen(process.env.PORT || 3000, () => {

@@ -4,4 +4,20 @@
       <p class="card-text"><%= product.description %></p>
     </div>
   </div>
-  
+
+  <h3>Review this product</h3>
+<form action="/product/<%=product.id%>/review" method="POST">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Name</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="name">
+    </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" name="content" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">What do you think?</label>
+    <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <input type="submit" class="btn btn-dark btn-primary" id="comment-submit-btn">
+</form>
