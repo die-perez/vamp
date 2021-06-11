@@ -5,19 +5,19 @@
     </div>
   </div>
 
-  <h3>Review this product</h3>
-<form action="/product/<%=product.id%>/review" method="POST">
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Name</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="name">
-    </div>
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+<% if (reviews.length == 0) { %>
+    <h1>No Reviews!</h1>
+<% } else { %>
+    <h1><%= reviews.length %> Review<% if (reviews.length > 1) { %>s<% }%>!</h1>
+  <% reviews.forEach(function(review){ %>
+
+    <%- include('../reviews/show', {review: review}) %>
+  
+  <% }); %> 
+  <% } %>
+
+  <div class="form-div">
+  
+    <%- include('../reviews/new', {product : product}) %>
+  
   </div>
-  <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">What do you think?</label>
-    <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <input type="submit" class="btn btn-dark btn-primary" id="comment-submit-btn">
-</form>

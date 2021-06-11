@@ -1,0 +1,9 @@
+
+<p>
+    <strong><%= moment(review.createdAt).calendar() %></strong>
+</p>
+
+<h4><a href="/users/<%= review.user.id %>"><%= review.user.name %></a> says:</h4>
+    <hr />
+
+<p><%= review.content %></p>
