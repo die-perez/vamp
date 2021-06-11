@@ -1,10 +1,10 @@
 // Make sure to require your models in the files where they will be used.
 const db = require('./models');
 
-// db.user.findOrCreate({
+// db.review.findOrCreate({
 //     where: {
-//         name: 'Siouxsie Sioux',
-//         email: 'bansheeforever@gmail.com'
+//         rating: 5,
+//         content: 'This is fantastic'
 //     }
 // })
 // .then((newUser) => {
@@ -12,15 +12,15 @@ const db = require('./models');
 // })
 // .catch((err) => {console.log(err)})
 
-async function findUser(){
-    try {
-        const foundUser = await db.user.findOne({
-            where: {name: 'Siouxsie Sioux'}
-        })
-        console.log(foundUser)
-    } catch(error) {
-        console.log(error)
-    }
-}
+// async function findUser(){
+//     try {
+//         const foundUser = await db.user.findOne({
+//             where: {name: 'Siouxsie Sioux'}
+//         })
+//         console.log(foundUser)
+//     } catch(error) {
+//         console.log(error)
+//     }
+// }
 
-findUser()
+// findUser()

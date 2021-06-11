@@ -44,7 +44,6 @@ app.get('/product/:id', (req,res) => {
     // search api data for id
     axios.get(`http://makeup-api.herokuapp.com/api/v1/products/${req.params.id}.json`)
     .then((response) => {
-        console.log(response)
         // render product details to page
         res.render('products/detail', {product: response.data})
     })
@@ -52,17 +51,35 @@ app.get('/product/:id', (req,res) => {
 })
 
 // POST --> post comments on product page
-app.post('/product/:id/reviews', (req,res) => {
+app.post('/product/:id/review', (req,res) => {
+    let name = req.body.name
     let email = req.body.email
-    // TODO: Get form data and add a new record to DB
+    let content = req.body.content
+    let productId = req.params.id
+
+    //get form data and add a new record to userDB
     db.user.findOrCreate({
       where: {
         email: email
+      },
+      defaults: {
+          name: name
       }
     })
-    .then((data) => {
-      // redirect back to favorites page
-      res.redirect('/product/:id')
+    //grab other data and store in review DB
+    .then(([user, created]) => {
+        db.review.findOrCreate({
+            where: {
+                userId: user.id,
+                productId: productId
+            },
+            defaults: {
+                content: content
+            }
+        })
+    })
+    .then(([review, created]) => {
+        res.redirect(`/product/${productId}`)
     })
     .catch(err => {console.log(err)}) 
 })
