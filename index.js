@@ -48,17 +48,18 @@ app.get('/products/search', (req,res) => {
 // GET --> return product details
 app.get('/product/:id', (req,res) => {
     // search api data for id
-    axios.get(`http://makeup-api.herokuapp.com/api/v1/products/${req.params.id}.json`)
-    .then((response) => {
-        db.review.findAll({
+    var fetchProduct = axios.get(`http://makeup-api.herokuapp.com/api/v1/products/${req.params.id}.json`)
+    var fetchReviews = fetchProduct.then((_) => {
+        return db.review.findAll({
             where: {productId: req.params.id},
             include: [db.user]
         })
-        .then((reviews) => {
-            // render product details and comments to page
-            res.render('products/detail', { product: response.data, reviews })
-        })
-        .catch(err => {console.log(err)})
+    })
+    
+    Promise.all([fetchProduct, fetchReviews])
+    .then(([response, reviews]) => {
+        // render product details and comments to page
+        res.render('products/detail', { product: response.data, reviews })
     })
     .catch(err => {console.log(err)})
 })
@@ -68,6 +69,7 @@ app.post('/product/:id/review', (req,res) => {
     let name = req.body.name
     let email = req.body.email
     let content = req.body.content
+    let rating = req.body.rate
     let productId = req.params.id
 
     //get form data and add a new record to userDB
@@ -81,18 +83,19 @@ app.post('/product/:id/review', (req,res) => {
     })
     //grab other data and store in review DB
     .then(([user, created]) => {
-        db.review.findOrCreate({
+        returndb.review.findOrCreate({
             where: {
                 userId: user.id,
                 productId: productId
             },
             defaults: {
-                content: content
+                content: content,
+                rating: rating
             }
-        }).then(([review, created]) => {
-            res.redirect(`/product/${productId}`)
         })
-        .catch(err => {console.log(err)}) 
+    })
+    .then(([review, created]) => {
+        res.redirect(`/product/${productId}`)
     })
     .catch(err => {console.log(err)}) 
 })
@@ -105,8 +108,7 @@ app.get('/users/:id', (req,res) => {
         include: [db.review]
     })
     .then((user) => {
-        console.log(user)
-        // render all reviews by this user to page
+        // render all reviews by this user to page   
         res.render('users/show', { user: user })
     })
     .catch(err => {console.log(err)})
