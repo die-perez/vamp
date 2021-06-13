@@ -1,16 +1,17 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<%- include('../../views/partials/navbar') %>
+
+<div class="products">
     
 <% product.forEach((product, index) => { %>
-    <div class="col">
-    <div class="card" style="width: 15rem;">
-        <img src="<%= product.image_link %>" class="card-img-top" alt="<%= product.name %>">
+    <div class="card">
+        <div class="card-img">
+            <img src="<%= product.image_link %>" class="card-img-top" alt="<%= product.name %>">
+        </div>
         <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
-            
-            <a href="/product/<%= product.id %>" class="btn btn-primary btn-dark">See More</a>
+            <a href="/product/<%= product.id %>" class="card-btn btn">See More</a>
         </div>
     </div>
-</div>
 <% }) %>
 
 </div>

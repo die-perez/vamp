@@ -37,7 +37,14 @@ app.get('/products/search', (req,res) => {
     const brand = req.query.brand
     // const brand = req.query.brand
     // search makeup api database
-    axios.get(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&brand=${brand}`)
+    var url = `http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&brand=${brand}`
+    if (brand && !type) {
+        url = `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}`
+    } else if (type && !brand) {
+        url = `http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`
+    }
+
+    axios.get(url)
         .then((response) => {
             // render data to page
             res.render('products/results', { product: response.data })
