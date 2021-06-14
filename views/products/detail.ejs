@@ -1,3 +1,8 @@
+<%- include('../../views/partials/navbar') %>
+
+
+<h1><%= product.name %></h1>
+
 <div class="card" style="width: 30rem;">
     <img src="<%= product.image_link %>" class="card-img-top" alt="<%= product.name %>">
     <div class="card-body">
@@ -16,8 +21,6 @@
   <% }); %> 
   <% } %>
 
-  <div class="form-div">
-  
-    <%- include('../reviews/new', {product : product}) %>
-  
-  </div>
+<div class="form-div">
+<%- include('../reviews/new', {product : product}) %>
+</div>

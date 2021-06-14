@@ -38,9 +38,10 @@ app.get('/products/search', (req,res) => {
     // const brand = req.query.brand
     // search makeup api database
     var url = `http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&brand=${brand}`
-    if (brand && !type) {
+
+    if (brand && (type === 'Choose a product')) {
         url = `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}`
-    } else if (type && !brand) {
+    } else if (type && (brand === 'Choose a brand')) {
         url = `http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`
     }
 

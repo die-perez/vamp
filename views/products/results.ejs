@@ -1,15 +1,15 @@
 <%- include('../../views/partials/navbar') %>
 
-<div class="products">
+<div class="results">
     
 <% product.forEach((product, index) => { %>
-    <div class="card">
-        <div class="card-img">
-            <img src="<%= product.image_link %>" class="card-img-top" alt="<%= product.name %>">
+    <div class="results-card">
+        <div class="img-div">
+            <img src="<%= product.image_link %>" class="results-img" alt="<%= product.name %>">
         </div>
-        <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
-            <a href="/product/<%= product.id %>" class="card-btn btn">See More</a>
+        <div class="results-body">
+            <h5 class="results-title"><%= product.name %></h5>
+            <a href="/product/<%= product.id %>" class="results-btn btn">deetz</a>
         </div>
     </div>
 <% }) %>
