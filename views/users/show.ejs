@@ -1,4 +1,6 @@
-<h1><%= user.name %></h1>
+<%- include('../../views/partials/navbar') %>
+
+<h1 class="title"><%= user.name %></h1>
 
 <h3>Review history:</h3>
 
@@ -7,7 +9,7 @@
     <% user.reviews.forEach(function(a) { %>
       <div class="well">
         <h3>
-          <a href="/products/<%= a.id %>"><%= a.content %></a>
+          <a href="/product/<%= a.productId %>"><%= a.content %></a>
         </h3>
         
       </div>

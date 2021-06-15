@@ -1,26 +1,29 @@
 <%- include('../../views/partials/navbar') %>
 
 
-<h1><%= product.name %></h1>
+<div class="details">
+    <h1 class="title"><%= product.name %></h1>
 
-<div class="card" style="width: 30rem;">
-    <img src="<%= product.image_link %>" class="card-img-top" alt="<%= product.name %>">
-    <div class="card-body">
-      <p class="card-text"><%= product.description %></p>
+    <div class="card" style="width: 30rem;">
+        <img src="<%= product.image_link %>" class="detail-img img" alt="<%= product.name %>">
+        <div class="card-body">
+        <p class="card-text"><%= product.description %></p>
+        </div>
     </div>
-  </div>
 
-<% if (reviews.length == 0) { %>
-    <h1>No Reviews!</h1>
-<% } else { %>
-    <h1><%= reviews.length %> Review<% if (reviews.length > 1) { %>s<% }%>!</h1>
-  <% reviews.forEach(function(review){ %>
 
-    <%- include('../reviews/show', {review: review}) %>
-  
-  <% }); %> 
-  <% } %>
 
-<div class="form-div">
-<%- include('../reviews/new', {product : product}) %>
+    <%- include('../reviews/new', {product : product}) %>
+
+    <% if (reviews.length == 0) { %>
+        <h3 class="details-title">No Reviews!</h1>
+    <% } else { %>
+        <h3><%= reviews.length %> Review<% if (reviews.length > 1) { %>s<% }%>!</h1>
+    <% reviews.forEach(function(review){ %>
+
+        <%- include('../reviews/show', {review: review}) %>
+    
+    <% }); %> 
+    <% } %>
+
 </div>

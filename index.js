@@ -91,7 +91,7 @@ app.post('/product/:id/review', (req,res) => {
     })
     //grab other data and store in review DB
     .then(([user, created]) => {
-        returndb.review.findOrCreate({
+        return db.review.findOrCreate({
             where: {
                 userId: user.id,
                 productId: productId
@@ -103,6 +103,11 @@ app.post('/product/:id/review', (req,res) => {
         })
     })
     .then(([review, created]) => {
+        if (review.content !== content || review.rating !== rating) {
+            review.content = content
+            review.rating = rating
+            review.save()
+        }
         res.redirect(`/product/${productId}`)
     })
     .catch(err => {console.log(err)}) 

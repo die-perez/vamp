@@ -173,6 +173,7 @@ ul {
     margin: 15px;
     width: 250px;
     height: 300px;
+    border-radius: 2%;
 }
 
 .results-card:hover {
@@ -180,11 +181,14 @@ ul {
 
 }
 
-.results-img {
+.img {
     display: block;
     justify-content: center;
     align-items: center;
     padding: 10px;
+}
+
+.results-img {
     width: 150px;
     height: 150px;
 }
@@ -209,11 +213,76 @@ ul {
     color: white;
     padding: 15px;
     width: 70px;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.details {
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.review {
+    text-align: center;
+}
+
+.review-form {
+    position: relative;
+    display: block;
+    width: 50vw;
+    height: auto;
     
 }
 
+.review-div {
+    margin: 15px;
+}
+
+.textarea {
+    width: 300px;
+    height: 150px;
+}
+
+.review-submit{
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.review-btn {
+    background-color: black;
+    border: 2px solid black;
+    color: white;
+    padding: 15px;
+    width: 25%;
+    border-style: none;
+}
+
+.review-btn:hover {
+    background-color: rgb(136, 255, 0);
+    border: 2px solid black;
+    color: black;
+}
+
+.rate-wrapper {
+    display:block;
+    text-align:center;
+    margin-top: 15px;
+}
+
 .rate {
-    float: left;
+    display:inline-block;
     height: 46px;
     padding: 0 10px;
 }
@@ -238,12 +307,12 @@ ul {
 }
 
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: rgb(136, 255, 0);    
 }
 
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: rgb(136, 255, 0);  
 }
 
 .rate > input:checked + label:hover,
@@ -251,5 +320,29 @@ ul {
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+    color: rgb(136, 255, 0);
+}
+
+.posted-review{
+    margin: 15px auto;
+    padding: 40px;
+    justify-content: left;
+    width: 30%;
+    height: auto;
+    border-bottom: 1px solid rgb(136, 255, 0);
+}
+
+.posted-content{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.name-link {
+    text-decoration: none;
+    background-color: black;
+    color: rgb(136, 255, 0);
+}
+
+.name-link:hover {
+    color: white;
 }
