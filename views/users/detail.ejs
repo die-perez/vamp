@@ -1,0 +1,19 @@
+<%- include('../../views/partials/navbar') %>
+
+<h1 class="title"><%= user.name %></h1>
+
+<h3>Review history:</h3>
+
+
+<% if(user.reviews) { %>
+    <% user.reviews.forEach(function(a) { %>
+      <div class="">
+        <h3>
+          <a href="/product/<%= a.productId %>"><%= a.content %></a>
+        </h3>
+        
+      </div>
+    <% }) %>
+  <% } else { %>
+    <h3>No reviews yet!</h3>
+  <% } %>

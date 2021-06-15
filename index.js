@@ -113,6 +113,18 @@ app.post('/product/:id/review', (req,res) => {
     .catch(err => {console.log(err)}) 
 })
 
+// GET -- list of users 
+app.get('/users', (req,res) => {
+    db.user.findAll({
+        include: [db.review]
+    }) 
+    .then((user) => {
+        res.render('users/show', {user})
+    })
+    .catch(err => {console.log(err)})
+})
+
+
 // GET --> user info
 app.get('/users/:id', (req,res) => {
     // find all reviews by specific user
@@ -122,10 +134,12 @@ app.get('/users/:id', (req,res) => {
     })
     .then((user) => {
         // render all reviews by this user to page   
-        res.render('users/show', { user: user })
+        res.render('users/detail', { user: user })
     })
     .catch(err => {console.log(err)})
 })
+
+
 
 var server = app.listen(process.env.PORT || 3000, () => {
     rowdyResults.print()

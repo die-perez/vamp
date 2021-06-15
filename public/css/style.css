@@ -346,3 +346,26 @@ h3 {
 .name-link:hover {
     color: white;
 }
+
+.user {
+    background-color: black;
+    color: white;
+}
+
+.user a, p{
+    margin-top: 25px;
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.user a {
+    font-size: 2rem;
+    color:rgb(136, 255, 0);
+}
+
+.user a:hover {
+    color:rgb(255, 0, 204);
+}
