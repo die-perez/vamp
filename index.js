@@ -7,6 +7,7 @@ let moment = require('moment')
 let rowdy = require('rowdy-logger')
 const { response } = require('express')
 let app = express()
+const methodOverride = require('method-override')
 
 var rowdyResults = rowdy.begin(app)
 
@@ -14,6 +15,9 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public/'))
+
+// allows you to use a form to PUT & DELETE
+app.use(methodOverride('_method'))
 
 // middleware that allows us to access the 'moment' library in every EJS view
 app.use((req, res, next) => {
@@ -139,6 +143,20 @@ app.get('/users/:id', (req,res) => {
     .catch(err => {console.log(err)})
 })
 
+app.delete('/review/:id', (req,res) => {
+    let user = null
+    // allow user to delete their review (just delete button for now)
+    db.review.findOne({
+        where: {id: req.params.id},
+        include: [db.user]
+    })
+    .then((review) => {
+         user = review.user
+         review.destroy()
+         res.redirect(`/users/${user.id}`)
+    })
+    .catch(err => {console.log(err)})
+})
 
 
 var server = app.listen(process.env.PORT || 3000, () => {
