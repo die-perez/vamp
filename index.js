@@ -1,5 +1,6 @@
 // import axios - node package allows basic get request
 const axios = require('axios')
+const dotenv = require('dotenv')
 let express = require('express')
 let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public/'))
+
 
 // allows you to use a form to PUT & DELETE
 app.use(methodOverride('_method'))
@@ -158,8 +160,9 @@ app.delete('/review/:id', (req,res) => {
     .catch(err => {console.log(err)})
 })
 
+const PORT = process.env.PORT || 3000
 
-var server = app.listen(process.env.PORT || 3000, () => {
+app.listen(PORT, () => {
     rowdyResults.print()
   })
 
