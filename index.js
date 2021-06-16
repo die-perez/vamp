@@ -165,5 +165,3 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     rowdyResults.print()
   })
-
-module.exports = server
