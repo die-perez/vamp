@@ -3,7 +3,7 @@ A source for makeup reviews and ratings
 
 Full-stack web application mimicking Craiglsist’s personal section for a younger generation. Allows users to post something to do and specify how many people can attend. Users can then join each other’s events. User authentication utilizing jwt tokens. MongoDB back-end with relational schemas connecting users and events. React front-end that breaks down several components and imports them where required. 
 
-**Tech stack:** HTML, CSS, EJS, JS, Bootstrap (maybe), Express, Sequelize & Node.js
+**Tech stack:** HTML, CSS, EJS, JavaScript, Express, Sequelize & Node.js
 
 **API:** http://makeup-api.herokuapp.com/
 
